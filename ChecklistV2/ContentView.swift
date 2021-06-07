@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-struct ChecklistItem {
+struct ChecklistItem: Identifiable {
+    let id = UUID ()
     var name: String
     var isChecked: Bool = false
 }
@@ -15,26 +16,22 @@ struct ChecklistItem {
 struct ContentView: View {
     //@State var checklistItems = ["Walk the dog", "Brush my teeth", "Learn iOS development", "Soccer practice", "Eat ice cream"]
     @State var checklistItems = [
-        ChecklistItem(name: "Walk the dog"),
-        ChecklistItem(name: "Brush my teeth"),
-        ChecklistItem(name: "Learn iOS development", isChecked: true),
-        ChecklistItem(name: "Soccer practice"),
-        ChecklistItem(name: "Eat ice cream", isChecked: true)
+        ChecklistItem(name: "Walk the dog", isChecked: false),
+        ChecklistItem(name: "Brush my teeth", isChecked: false),
+        ChecklistItem(name: "Walk the dog", isChecked: true),
+        ChecklistItem(name: "Soccer practice", isChecked: false),
+        ChecklistItem(name: "Walk the dog", isChecked: true)
     ]
     
     var body: some View {
         NavigationView {
             List {
-                ForEach(checklistItems, id: \.self.name) {
+                ForEach(checklistItems) {
                     checklistItem in
                     HStack {
                         Text(checklistItem.name)
                         Spacer()
-                        if checklistItem.isChecked {
-                            Text("☑️")
-                        } else {
-                            Text("⬛️")
-                        }
+                        Text(checklistItem.isChecked ? "☑️" : "⬛️")
                     }
                 } // End of ForEach
                 .onDelete(perform: deleteListItem)

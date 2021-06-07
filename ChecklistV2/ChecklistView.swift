@@ -50,7 +50,7 @@ struct ChecklistView: View {
         } // End of navigationView
         .sheet(isPresented: $newChecklistItemViewIsVisible){
             //Text("New item screen coming soon!")
-            NewChecklistItemView()
+            NewChecklistItemView(checklist: self.checklist)
         }
     } // End of body
 } // End of ContentView

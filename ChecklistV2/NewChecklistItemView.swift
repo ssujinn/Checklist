@@ -34,6 +34,12 @@ struct NewChecklistItemView: View {
             }   // End of List
             Text("Swipe down to cancle")
         }   // End of VStack
+        .onAppear() {
+            print("NewChecklistItemView has appeared!")
+        }   // End of .onAppear()
+        .onAppear() {
+            print("NewChecklistItemView has disappeared!")
+        }   // End of .onAppear()
     }   // End of body
 }   // End of View
 
